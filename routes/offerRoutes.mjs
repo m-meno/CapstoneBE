@@ -1,11 +1,24 @@
+import express from "express";
+import offerControllers from "../controllers/offerControllers.mjs";
 
+const router = express.Router();
 
+// @route: POST /api/offers
+// @desc: create offer route
+// @access: Private
+router.post("/", auth, offerControllers.createOffer)
 
+// @route: GET /api/offers
+// @desc: Get all offers
+// @access: Public
+router.get("/", offerControllers.readOffers);
 
-// @route: 
-// @desc:
-// @access: 
+// @route: PUT /api/offers
+// @desc: Update one offer
+// @access: Private
+router.put("/:id", auth, offerControllers.updatedOffer)
 
-// @route: 
-// @desc:
-// @access: 
+// @route: DELETE /api/offers
+// @desc: Delete one offer
+// @access: Private
+router.delete("/:id", auth, offerControllers.deleteOffer)
