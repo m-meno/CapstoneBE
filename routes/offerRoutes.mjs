@@ -22,3 +22,5 @@ router.put("/:id", auth, offerControllers.updatedOffer)
 // @desc: Delete one offer
 // @access: Private
 router.delete("/:id", auth, offerControllers.deleteOffer)
+
+export default router;
