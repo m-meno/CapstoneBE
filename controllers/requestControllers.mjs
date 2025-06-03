@@ -26,5 +26,16 @@ let deleteRequest = async (req, res) => {
     res.json(deleteRequest)
 }
 
-export default { createRequest, readRequests, updatedRequest, deleteRequest };
+let seedRequests = async (req, res) => {
+    try {
+        await Request.deleteMany({});
+        await Request.create()
+        res.send("Seeded DB");
+    } catch(err){
+        console.error(err)
+        res.status(500).json({msg: "Server Error"})
+    }
+}
+
+export default { createRequest, readRequests, updatedRequest, deleteRequest, seedRequests };
 

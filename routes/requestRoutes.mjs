@@ -22,3 +22,8 @@ router.put("/:id", auth, requestControllers.updatedRequest)
 // @desc: Delete one request
 // @access: Private
 router.delete("/:id", auth, requestControllers.deleteRequest)
+
+// @route: GET /api/requests/seed
+// @desc: Seed DB with request info
+// @access: Public
+router.get("/seed", requestControllers.seedRequests)
