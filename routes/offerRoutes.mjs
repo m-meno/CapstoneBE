@@ -1,5 +1,6 @@
 import express from "express";
 import offerControllers from "../controllers/offerControllers.mjs";
+import auth from "../middleware/auth.mjs"
 
 const router = express.Router();
 

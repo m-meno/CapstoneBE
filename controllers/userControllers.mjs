@@ -7,7 +7,7 @@ dotenv.config();
 
 let register = async (req, res) => {
     //Destructure the req.body
-    const { username, email, password } = req.body;
+    const { username, email, password, location } = req.body;
 
     //Check if user submitted all required information, if not return
     if (!username || !email || !password || !location) {
@@ -69,7 +69,7 @@ let login = async (req, res) => {
 
         //Check to see if password matches, if not return with error
         if (!isMatch) {
-            res.status(400).json({ msg: "Invalid credentials" })
+            return res.status(400).json({ msg: "Invalid credentials" })
         }
         //create our payload - userId
         const payload = {
@@ -99,3 +99,4 @@ let login = async (req, res) => {
 }
 
 export default { register, login };
+

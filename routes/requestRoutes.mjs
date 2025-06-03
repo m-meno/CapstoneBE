@@ -1,5 +1,6 @@
 import express from "express";
 import requestControllers from "../controllers/requestControllers.mjs";
+import auth from "../middleware/auth.mjs";
 
 const router = express.Router();
 
@@ -27,3 +28,5 @@ router.delete("/:id", auth, requestControllers.deleteRequest)
 // @desc: Seed DB with request info
 // @access: Public
 router.get("/seed", requestControllers.seedRequests)
+
+export default router;
