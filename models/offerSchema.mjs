@@ -12,7 +12,6 @@ const offerSchema = new mongoose.Schema({
     location: {
         type: String,
         required: true,
-        location: Number,
     },
     img: {
         type: String,

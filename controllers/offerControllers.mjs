@@ -1,4 +1,5 @@
-import Offer from "../models/offerSchema.mjs"
+import Offer from "../models/offerSchema.mjs";
+
 
 let createOffer = async (req, res) => {
     const newOffer = await Offer.insertOne(req.body);
@@ -26,4 +27,15 @@ let deleteOffer = async (req, res) => {
     res.json(deleteOffer)
 }
 
-export default { createOffer, readOffers, updatedOffer, deleteOffer };
+let seedOffers = async (req, res) => {
+    try {
+        await Offer.deleteMany({});
+        await Offer.create()
+        res.send("Seeded DB");
+    } catch(err){
+        console.error(err)
+        res.status(500).json({msg: "Server Error"})
+    }
+}
+
+export default { createOffer, readOffers, updatedOffer, deleteOffer, seedOffers };

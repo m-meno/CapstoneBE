@@ -23,4 +23,10 @@ router.put("/:id", auth, offerControllers.updatedOffer)
 // @access: Private
 router.delete("/:id", auth, offerControllers.deleteOffer)
 
+// @route: GET /api/offers/seed
+// @desc: Seed DB with offer information
+// @access: Public
+router.get("/seed", offerControllers.seedOffers)
+
+
 export default router;

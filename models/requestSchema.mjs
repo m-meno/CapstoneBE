@@ -19,7 +19,6 @@ const requestSchema = new mongoose.Schema({
     },
     img: {
         type: String,
-
     },
 
 });
