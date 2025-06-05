@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
             "Email address must be valid !",
         ],
     },
-    password: { type: String, required: true, minLength: 6 }
+    password: { type: String, required: true, minLength: 6 },
+    location: {type: String, required: true}
 });
 
 export default mongoose.model("User", userSchema);

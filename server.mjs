@@ -3,9 +3,8 @@ import express from 'express';
 import dotenv from "dotenv";
 import connectDB from './db/conn.mjs';
 import cors from "cors";
+import postRoutes from "./routes/postRoutes.mjs";
 import userRoutes from "./routes/userRoutes.mjs";
-import offerRoutes from "./routes/offerRoutes.mjs";
-import requestRoutes from "./routes/requestRoutes.mjs";
 import globalError from './middleware/globalError.mjs';
 
 //Setup
@@ -19,9 +18,8 @@ app.use(express.json());
 connectDB();
 
 //Routes
+app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/offers', offerRoutes);
-app.use('/api/requests', requestRoutes);
 
 
 //Error handling middleware

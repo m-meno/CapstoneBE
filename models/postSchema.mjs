@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 
-const offerSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
+    type: {
+        enum: ["Offer", "Request"]
+    },
     title: {
         type: String,
         required: true
@@ -11,18 +14,18 @@ const offerSchema = new mongoose.Schema({
     },
     location: {
         type: String,
-        required: true,
-    },
-    img: {
-        type: String,
-        required: true,
+        location: Number
     },
     datePosted: {
         type: Date,
         default: Date.now
-    }
+    },
+    img: {
+        type: String,
+    },
+
 });
 
-offerSchema.index({datePosted: 1});
+postSchema.index({datePosted: 1 });
 
-export default mongoose.model("Offer", offerSchema);
+export default mongoose.model("Post", postSchema);
