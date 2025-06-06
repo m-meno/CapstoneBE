@@ -28,7 +28,10 @@ let register = async (req, res) => {
 
         user.password = await bcrypt.hash(password, salt);
 
+        console.log({ username, email, location})
         //Save user to create a unique mondoDB _id
+      
+       
         await user.save();
 
         const payload = {

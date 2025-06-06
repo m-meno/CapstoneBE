@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const postSchema = new mongoose.Schema({
     type: {
+        type: String,
         enum: ["Offer", "Request"]
     },
     title: {

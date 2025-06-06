@@ -11,6 +11,11 @@ let readPosts = async (req, res) => {
     res.json(allPosts)
 };
 
+let readOnePost = async (req, res) => {
+    const onePost = await Post.findById(req.params.id);
+    res.json(onePost)
+}
+
 let updatedPost = async (req, res) => {
     let updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -37,5 +42,5 @@ let seedPosts = async (req, res) => {
     }
 }
 
-export default { createPost, readPosts, updatedPost, deletePost, seedPosts };
+export default { createPost, readPosts, readOnePost, updatedPost, deletePost, seedPosts };
 
