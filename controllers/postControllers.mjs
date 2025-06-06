@@ -1,8 +1,10 @@
 import Post from "../models/postSchema.mjs";
 
 let createPost = async (req, res) => {
-    const newPost = await Post.insertOne(req.body);
-
+    const newPost = await Post.create({
+        ...req.body,
+        user: req.user,
+    });
     res.status(201).json(newPost)
 };
 

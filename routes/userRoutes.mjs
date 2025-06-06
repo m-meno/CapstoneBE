@@ -13,12 +13,10 @@ router.post("/register", userControllers.register);
 // // @access: Public
 router.post("/login", userControllers.login);
 
-// @route: 
-// @desc:
-// @access: 
+// @route: GET /api/user/:id
+// @desc: get user data
+// @access: Private
+router.get("/:id", userControllers.getUser)
 
-// @route: 
-// @desc:
-// @access: 
 
 export default router;

@@ -99,7 +99,13 @@ let login = async (req, res) => {
         console.error(err)
         res.status(500).json({msg: "Server Error"});
     }
+};
+
+let getUser = async(req, res) => {
+    let user = await User.findById(req.user)
+    .select("-password")
+    res.json(user)
 }
 
-export default { register, login };
+export default { register, login, getUser };
 
