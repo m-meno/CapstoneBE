@@ -19,7 +19,6 @@ const postSchema = new mongoose.Schema({
     },
     location: {
         type: String,
-        location: Number
     },
     datePosted: {
         type: Date,

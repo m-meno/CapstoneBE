@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors()); //cross origin resource sharing
 app.use(express.json());
 connectDB();
+app.use("/uploads", express.static("uploads"))
 
 //Routes
 app.use('/api/post', postRoutes);

@@ -1,18 +1,21 @@
 import express from "express";
 import postControllers from "../controllers/postControllers.mjs";
 import auth from "../middleware/auth.mjs";
+import upload from "../middleware/multer.mjs";
+
 
 const router = express.Router();
 
 // @route: POST /api/post
 // @desc: create post route
 // @access: Private
-router.post("/", auth, postControllers.createPost)
+router.post("/", auth, upload.single('img'), postControllers.createPost)
 
 // @route: GET /api/post
-// @desc: Get all posts
+// @desc: Get all posts or get all posts from one user
 // @access: Public
 router.get("/", postControllers.readPosts);
+
 
 // @route: GET /api/post/:id
 // @desc: Get one post

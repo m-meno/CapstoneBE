@@ -1,16 +1,39 @@
 import Post from "../models/postSchema.mjs";
 
 let createPost = async (req, res) => {
-    const newPost = await Post.create({
-        ...req.body,
-        user: req.user,
-    });
+    try {
+        const data = {
+            ...req.body,
+            user: req.user,
+        };
+
+        if (req.file) {
+            data.img = req.file.filename
+        }
+
+         
+    const newPost = await Post.create(data);
     res.status(201).json(newPost)
+      
+    } catch (err) {
+        console.error(err)
+    } 
 };
 
 let readPosts = async (req, res) => {
-    const allPosts = await Post.find({});
-    res.json(allPosts)
+    try {
+        const { user } = req.query;
+        if (user) {
+            let getUserPosts = await Post.find({ user: req.query.user });
+            res.json(getUserPosts)
+        } else {
+            const allPosts = await Post.find({});
+            res.json(allPosts)
+        }
+    } catch (err) {
+        console.error(err)
+    }
+
 };
 
 let readOnePost = async (req, res) => {
@@ -29,18 +52,19 @@ let updatedPost = async (req, res) => {
 
 
 let deletePost = async (req, res) => {
-    let deletePost = Post.findByIdAndDelete(req.params.id);
+    let deletePost = await Post.findByIdAndDelete(req.params.id);
     res.json(deletePost)
-}
+};
+
 
 let seedPosts = async (req, res) => {
     try {
         await Post.deleteMany({});
         await Post.create()
         res.send("Seeded DB");
-    } catch(err){
+    } catch (err) {
         console.error(err)
-        res.status(500).json({msg: "Server Error"})
+        res.status(500).json({ msg: "Server Error" })
     }
 }
 
