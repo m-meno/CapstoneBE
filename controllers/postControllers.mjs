@@ -11,23 +11,22 @@ let createPost = async (req, res) => {
             data.img = req.file.filename
         }
 
-         
-    const newPost = await Post.create(data);
-    res.status(201).json(newPost)
-      
+        const newPost = await Post.create(data);
+        res.status(201).json(newPost)
+
     } catch (err) {
         console.error(err)
-    } 
+    }
 };
 
 let readPosts = async (req, res) => {
     try {
         const { user } = req.query;
         if (user) {
-            let getUserPosts = await Post.find({ user: req.query.user });
+            let getUserPosts = await Post.find({ user: req.query.user});
             res.json(getUserPosts)
         } else {
-            const allPosts = await Post.find({});
+            const allPosts = await Post.find({}).sort({datePosted: -1})
             res.json(allPosts)
         }
     } catch (err) {
@@ -42,12 +41,21 @@ let readOnePost = async (req, res) => {
 }
 
 let updatedPost = async (req, res) => {
-    let updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-        runValidators: true,
-    });
+    try {
+        const data = req.body;
+        if (req.file) {
+            data.img = req.file.filename
+        }
 
-    res.json(updatedPost);
+        let updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true,
+        });
+        res.json(updatedPost);
+
+    } catch (err) {
+        console.error(err)
+    }
 };
 
 

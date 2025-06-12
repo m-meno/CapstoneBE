@@ -25,7 +25,7 @@ router.get("/:id", postControllers.readOnePost);
 // @route: PUT /api/post/:id
 // @desc: Update one post
 // @access: Private
-router.put("/:id", auth, postControllers.updatedPost)
+router.put("/:id", auth, upload.single('img'), postControllers.updatedPost)
 
 // @route: DELETE /api/post/:id
 // @desc: Delete one post
