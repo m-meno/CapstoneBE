@@ -1,7 +1,7 @@
 ## Capstone Backend
 
 ## Description
-This backend features user authentication, file uploads, and CRUD operations for posts. Users can register, login, create, read, update, and delete posts. Image uploads are supported.
+This backend features user authentication, file uploads, and CRUD capabilities for posts. Users can register, login, create, read, update, and delete posts with uploaded images.
 
 ---
 
@@ -19,10 +19,10 @@ This backend features user authentication, file uploads, and CRUD operations for
 ## API Routes Overview
 
 ### Posts Routes (`/api/post`)
-- **POST /**: Create a new post (Private, requires auth and file upload)
+- **POST /**: Create a new post (Private, requires auth and allows file upload)
 - **GET /**: Get all posts or posts from a specific user (Public)
 - **GET /:id**: Get a single post by ID (Public)
-- **PUT /:id**: Update a post by ID (Private, requires auth and file upload)
+- **PUT /:id**: Update a post by ID (Private, requires auth and allows file upload)
 - **DELETE /:id**: Delete a post by ID (Private, requires auth)
 - **GET /seed**: Seed the database with post data (Public)
 
